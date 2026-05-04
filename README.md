@@ -1,3 +1,17 @@
+# Hogar Rutinas
+
+Sistema de menú semanal y rutinas del hogar — Christian & Vivi
+
+![version](https://img.shields.io/badge/versión-v3-green)
+![tipo](https://img.shields.io/badge/HTML%2FCSS-personal-blue)
+
+## Qué es esto
+
+Widgets HTML imprimibles para gestión del hogar: menú semanal,
+rotación de tareas y rutinas diarias. Diseñados para pegar en el refrigerador.
+
+## Estructura del proyecto
+
 Sistema de menú semanal y rutinas del hogar — Christian & Vivi
 
 HTML / CSS personal
