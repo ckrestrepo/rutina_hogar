@@ -1,0 +1,293 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .page {
+    background: #fdf8f2;
+    padding: 26px 22px 20px;
+    font-family: 'Lato', sans-serif;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid #c8a97a;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #3b2e1e;
+    letter-spacing: 0.04em;
+  }
+  .header p {
+    font-size: 12px;
+    color: #9b7e5c;
+    font-weight: 300;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 11.5px;
+    color: #9b7e5c;
+    margin-bottom: 18px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .section { margin-bottom: 20px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 10px 10px 0 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .section-header .freq {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.7;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .section-body {
+    border-radius: 0 0 10px 10px;
+    padding: 8px 0 10px;
+  }
+
+  .tasks-grid { display: grid; gap: 0; }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .three-col { grid-template-columns: 1fr 1fr 1fr; }
+
+  .task-group { padding: 6px 14px 4px; }
+  .task-group + .task-group {
+    border-left: 1px dashed;
+  }
+
+  .task-group-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 5px;
+    opacity: 0.55;
+  }
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed;
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+  .task:last-child { border-bottom: none; }
+
+  .check {
+    flex-shrink: 0;
+    margin-top: 2px;
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    border: 1.2px solid;
+    opacity: 0.4;
+  }
+
+  .tag {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* DIARIO */
+  .diario .section-header { background: #f5e6cc; }
+  .diario .section-header h2 { color: #7a4f1e; }
+  .diario .section-body { background: #fdf3e3; border: 1px solid #e8cfa0; border-top: none; }
+  .diario .task { color: #5c3d1e; border-bottom-color: #e8cfa0; }
+  .diario .task-group { border-left-color: #e8cfa0; }
+  .diario .check { border-color: #c8843a; }
+  .diario .tag { background: #f5e6cc; color: #8a5520; }
+  .diario .task-group-title { color: #a06030; }
+
+  /* SEMANAL */
+  .semanal .section-header { background: #d8e8d0; }
+  .semanal .section-header h2 { color: #2e5227; }
+  .semanal .section-body { background: #f0f7ec; border: 1px solid #b8d4ae; border-top: none; }
+  .semanal .task { color: #2e4a28; border-bottom-color: #c5d9bc; }
+  .semanal .task-group { border-left-color: #c5d9bc; }
+  .semanal .check { border-color: #5a8f4a; }
+  .semanal .tag { background: #d8e8d0; color: #2e5227; }
+  .semanal .task-group-title { color: #3a6a30; }
+
+  /* MENSUAL */
+  .mensual .section-header { background: #f0dde0; }
+  .mensual .section-header h2 { color: #6b2c35; }
+  .mensual .section-body { background: #fdf0f2; border: 1px solid #ddb8be; border-top: none; }
+  .mensual .task { color: #5a2630; border-bottom-color: #e0c4c8; }
+  .mensual .task-group { border-left-color: #e0c4c8; }
+  .mensual .check { border-color: #b05060; }
+  .mensual .tag { background: #f0dde0; color: #7a3040; }
+  .mensual .task-group-title { color: #8a3545; }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #d8c8b0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #9b7e5c;
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .footer {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 10px;
+    color: #b09070;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .deco-line { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 4px; }
+  .deco-line .line { width: 50px; height: 1px; background: #c8a97a; }
+</style>
+
+<div class="page">
+  <div class="header">
+    <h1>Rutinas del hogar</h1>
+    <p>Christian &amp; Vivi · Casa dos pisos · 4 mascotas</p>
+  </div>
+
+  <p class="note">Miércoles noche: iglesia — sin tareas pesadas · El que cocina no lava la loza · Ropa nunca a la intemperie</p>
+
+  <!-- DIARIO -->
+  <div class="section diario">
+    <div class="section-header">
+      <span style="font-size:17px">☀️</span>
+      <h2>Diario</h2>
+      <span class="freq">cada día o cada 2 días, sin excepción</span>
+    </div>
+    <div class="section-body">
+      <div class="tasks-grid three-col">
+        <div class="task-group">
+          <div class="task-group-title">Fijo Christian</div>
+          <div class="task"><div class="check"></div><span>Barrer la casa</span><span class="tag">C</span></div>
+          <div class="task"><div class="check"></div><span>Alimentar perros y gatos</span><span class="tag">C</span></div>
+          <div class="task"><div class="check"></div><span>Sacar la basura (día de por medio)</span><span class="tag">C</span></div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-title">Ambos</div>
+          <div class="task"><div class="check"></div><span>Sacar a los perros</span><span class="tag">Ambos</span></div>
+          <div class="task"><div class="check"></div><span>Tender la cama y arreglar cuarto</span><span class="tag">Ambos</span></div>
+          <div class="task"><div class="check"></div><span>No dejar ropa a la intemperie</span><span class="tag">Ambos</span></div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-title">Hogar</div>
+          <div class="task"><div class="check"></div><span>Limpiar caja de arena (gatos)</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Lavar loza (el que no cocinó)</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Estudiar</span><span class="tag">Ambos</span></div>
+          <div class="task"><div class="check"></div><span>Leer</span><span class="tag">Ambos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANAL -->
+  <div class="section semanal">
+    <div class="section-header">
+      <span style="font-size:17px">📅</span>
+      <h2>Semanal</h2>
+      <span class="freq">distribuido en la semana · planear el viernes</span>
+    </div>
+    <div class="section-body">
+      <div class="tasks-grid three-col">
+        <div class="task-group">
+          <div class="task-group-title">Limpieza</div>
+          <div class="task"><div class="check"></div><span>Trapear la casa</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Lavar el baño</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Limpiar comedor</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Limpiar cocina (fondo)</span><span class="tag">Rota</span></div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-title">Ropa</div>
+          <div class="task"><div class="check"></div><span>Lavar la ropa</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Doblar y guardar ropa</span><span class="tag">Rota</span></div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-title">Planeación (viernes)</div>
+          <div class="task"><div class="check"></div><span>Lista de actividades semana siguiente</span><span class="tag">Ambos</span></div>
+          <div class="task"><div class="check"></div><span>Elegir menú de la semana</span><span class="tag">Ambos</span></div>
+          <div class="task"><div class="check"></div><span>Revisión presupuestal</span><span class="tag">Ambos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSUAL -->
+  <div class="section mensual">
+    <div class="section-header">
+      <span style="font-size:17px">🌙</span>
+      <h2>Mensual</h2>
+      <span class="freq">un sábado sin afán · no todo tiene que ser el mismo día</span>
+    </div>
+    <div class="section-body">
+      <div class="tasks-grid two-col">
+        <div class="task-group">
+          <div class="task-group-title">Hogar</div>
+          <div class="task"><div class="check"></div><span>Limpiar nevera por dentro</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Limpiar ventanas</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Organizar closet</span><span class="tag">Cada uno el suyo</span></div>
+          <div class="task"><div class="check"></div><span>Lavar patio</span><span class="tag">Rota</span></div>
+        </div>
+        <div class="task-group">
+          <div class="task-group-title">Mascotas &amp; finanzas</div>
+          <div class="task"><div class="check"></div><span>Bañar los perros</span><span class="tag">Rota</span></div>
+          <div class="task"><div class="check"></div><span>Elaboración presupuesto mensual</span><span class="tag">Ambos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#c8843a"></div>C = Christian fijo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#b05060"></div>V = Vivi fijo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#5a8f4a"></div>Rota = el que pueda</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#9b7e5c"></div>Ambos = juntos</div>
+  </div>
+
+  <div class="footer">
+    <div class="deco-line"><div class="line"></div><span style="font-size:13px">🌿</span><div class="line"></div></div>
+    Es una guía, no una camisa de fuerza · ajústenlo cuando lo necesiten
+  </div>
+</div>
