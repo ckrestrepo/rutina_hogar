@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutinas del Hogar · Christian & Vivi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #fdf8f2;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid #c8a97a;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #3b2e1e;
+    letter-spacing: 0.03em;
+  }
+  .header .subtitle {
+    font-size: 11.5px;
+    color: #9b7e5c;
+    font-weight: 300;
+    margin-top: 5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 11.5px;
+    color: #9b7e5c;
+    margin: 10px 0 20px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* SECTION WRAPPER */
+  .section { margin-bottom: 22px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 10px 10px 0 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .section-header .freq {
+    margin-left: auto;
+    font-size: 10.5px;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.65;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .section-body {
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+  }
+
+  /* THREE COLUMNS */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .col {
+    padding: 10px 14px 12px;
+  }
+  .col + .col {
+    border-left: 1px dashed;
+  }
+
+  .col-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    margin-bottom: 8px;
+    opacity: 0.5;
+  }
+
+  .task {
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 5px 0;
+    border-bottom: 1px dashed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .task:last-child { border-bottom: none; }
+
+  .tag {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 1px;
+  }
+
+  /* TWO COLUMNS para mensual hogar */
+  .cols-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* DIARIO */
+  .diario .section-header { background: #f5e6cc; }
+  .diario .section-header h2 { color: #7a4f1e; }
+  .diario .section-body { background: #fdf3e3; border: 1px solid #e8cfa0; border-top: none; }
+  .diario .col { border-left-color: #e4c890; }
+  .diario .task { color: #5c3d1e; border-bottom-color: #e8cfa0; }
+  .diario .tag-c { background: #f5e6cc; color: #8a5520; }
+  .diario .tag-v { background: #fce8e8; color: #9a3030; }
+  .diario .tag-h { background: #ede8f5; color: #4a3a7a; }
+  .diario .col-title { color: #a06030; }
+
+  /* SEMANAL */
+  .semanal .section-header { background: #d8e8d0; }
+  .semanal .section-header h2 { color: #2e5227; }
+  .semanal .section-body { background: #f0f7ec; border: 1px solid #b8d4ae; border-top: none; }
+  .semanal .col { border-left-color: #b8d4ae; }
+  .semanal .task { color: #2e4a28; border-bottom-color: #c5d9bc; }
+  .semanal .tag-c { background: #d8e8d0; color: #2e5227; }
+  .semanal .tag-v { background: #fce8e8; color: #9a3030; }
+  .semanal .tag-h { background: #ede8f5; color: #4a3a7a; }
+  .semanal .col-title { color: #3a6a30; }
+
+  /* MENSUAL */
+  .mensual .section-header { background: #f0dde0; }
+  .mensual .section-header h2 { color: #6b2c35; }
+  .mensual .section-body { background: #fdf0f2; border: 1px solid #ddb8be; border-top: none; }
+  .mensual .col { border-left-color: #ddb8be; }
+  .mensual .task { color: #5a2630; border-bottom-color: #e0c4c8; }
+  .mensual .tag-c { background: #f0dde0; color: #7a3040; }
+  .mensual .tag-v { background: #fce8e8; color: #9a3030; }
+  .mensual .tag-h { background: #ede8f5; color: #4a3a7a; }
+  .mensual .col-title { color: #8a3545; }
+
+  /* PAREJA */
+  .pareja .section-header { background: #dde4f0; }
+  .pareja .section-header h2 { color: #2c3a6b; }
+  .pareja .section-body { background: #f0f3fd; border: 1px solid #b8c4de; border-top: none; }
+  .pareja .col { border-left-color: #b8c4de; }
+  .pareja .task { color: #2a3460; border-bottom-color: #c4cde0; }
+  .pareja .tag-h { background: #dde4f0; color: #2c3a6b; }
+  .pareja .col-title { color: #3a4a8a; }
+
+  /* LEYENDA */
+  .legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #d8c8b0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #9b7e5c;
+  }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  .footer {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 10px;
+    color: #b09070;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .deco-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .deco-line .line { width: 50px; height: 1px; background: #c8a97a; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 12px 14px; }
+    .section { margin-bottom: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Rutinas del hogar</h1>
+    <div class="subtitle">Christian &amp; Vivi · Casa dos pisos · 4 mascotas</div>
+  </div>
+
+  <p class="note">Miércoles noche: iglesia — sin tareas pesadas · El que cocina no lava la loza · Ropa nunca a la intemperie</p>
+
+  <!-- DIARIO -->
+  <div class="section diario">
+    <div class="section-header">
+      <span style="font-size:16px">☀️</span>
+      <h2>Diario</h2>
+      <span class="freq">cada día o cada 2 días, sin excepción</span>
+    </div>
+    <div class="section-body">
+      <div class="cols">
+        <div class="col">
+          <div class="col-title">Chris</div>
+          <div class="task"><span>Barrer la casa</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Alimentar perros y gatos</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Limpiar caja de arena (gatos)</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Sacar la basura (día de por medio)</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Estudiar y/o Leer</span><span class="tag tag-c">C</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Vivi</div>
+          <div class="task"><span>Limpiar caja de arena (gatos)</span><span class="tag tag-v">V</span></div>
+          <div class="task"><span>Hacer el desayuno</span><span class="tag tag-v">V</span></div>
+          <div class="task"><span>Trapear la casa</span><span class="tag tag-v">V</span></div>
+          <div class="task"><span>Estudiar y/o Leer</span><span class="tag tag-v">V</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Hogar (rota / ambos)</div>
+          <div class="task"><span>Sacar a los perros</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Tender la cama y arreglar cuarto</span><span class="tag tag-h">Rota</span></div>
+          <div class="task"><span>Lavar la loza (el que no cocinó)</span><span class="tag tag-h">Rota</span></div>
+          <div class="task"><span>No dejar ropa a la intemperie</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Hacer el almuerzo</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Hacer la comida</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Leer libro de pareja</span><span class="tag tag-h">Ambos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANAL -->
+  <div class="section semanal">
+    <div class="section-header">
+      <span style="font-size:16px">📅</span>
+      <h2>Semanal</h2>
+      <span class="freq">distribuido en la semana · planear el viernes</span>
+    </div>
+    <div class="section-body">
+      <div class="cols">
+        <div class="col">
+          <div class="col-title">Christian</div>
+          <div class="task"><span>Limpiar las ventanas</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Quitar telarañas</span><span class="tag tag-c">C</span></div>
+          <div class="task"><span>Ordenar el taller-oficina</span><span class="tag tag-c">C</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Viviana</div>
+          <div class="task"><span>Limpiar el comedor</span><span class="tag tag-v">V</span></div>
+          <div class="task"><span>Limpiar la estufa</span><span class="tag tag-v">V</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Hogar | Planeación (Viernes)</div>
+          <div class="task"><span>Revisión actividades semana siguiente</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Elegir menú de la semana siguiente</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Revisar presupuesto y flujo de dinero</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Lavar la ropa</span><span class="tag tag-h">Ambos</span></div>
+          <div class="task"><span>Doblar y subir la ropa</span><span class="tag tag-h">Rota</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSUAL -->
+  <div class="section mensual">
+    <div class="section-header">
+      <span style="font-size:16px">🌙</span>
+      <h2>Mensual — Hogar</h2>
+      <span class="freq">un sábado sin afán · no todo tiene que ser el mismo día</span>
+    </div>
+    <div class="section-body">
+      <div class="cols">
+        <div class="col">
+          <div class="col-title">Christian</div>
+          <div class="task"><span>Lavar patio</span><span class="tag tag-c">C</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Viviana</div>
+          <div class="task"><span>Limpiar la nevera</span><span class="tag tag-v">V</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Hogar</div>
+          <div class="task"><span>Organizar Closet </span><span class="tag tag-h">Cada uno el suyo</span></div>
+          <div class="task"><span>Bañar a Danger</span><span class="tag tag-h">Rota</span></div>
+          <div class="task"><span>Elaborar presupuesto del mes</span><span class="tag tag-h">Ambos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAREJA -->
+  <div class="section pareja">
+    <div class="section-header">
+      <span style="font-size:16px">🌿</span>
+      <h2>Mensual — Vida en pareja</h2>
+      <span class="freq">mínimo 2 salidas al mes · sábados preferiblemente</span>
+    </div>
+    <div class="section-body">
+      <div class="cols">
+        <div class="col">
+          <div class="col-title">Salidas (2 al mes)</div>
+          <div class="task"><span>Caminata o sendero (La Romelia, parques)</span><span class="tag tag-h">☀️</span></div>
+          <div class="task"><span>Desayuno o café afuera</span><span class="tag tag-h">☕</span></div>
+          <div class="task"><span>Mercado de productores o plaza</span><span class="tag tag-h">🛒</span></div>
+          <div class="task"><span>Galería, exposición o museo</span><span class="tag tag-h">🎨</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Planes caseros</div>
+          <div class="task"><span>Cocinar algo nuevo juntos</span><span class="tag tag-h">🍳</span></div>
+          <div class="task"><span>Tarde de película o serie</span><span class="tag tag-h">🎬</span></div>
+          <div class="task"><span>Tarde de juegos de mesa</span><span class="tag tag-h">🎲</span></div>
+          <div class="task"><span>Tarde sin pantallas y sin plan</span><span class="tag tag-h">✨</span></div>
+        </div>
+        <div class="col">
+          <div class="col-title">Rituales fijos</div>
+          <div class="task"><span>Viernes de planeación (café + agenda)</span><span class="tag tag-h">Viernes</span></div>
+          <div class="task"><span>Salida del mes (la que elijan)</span><span class="tag tag-h">Sábado 1</span></div>
+          <div class="task"><span>Segunda salida o plan casero especial</span><span class="tag tag-h">Sábado 2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEYENDA -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#c8843a"></div>C = Christian</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#b05060"></div>V = Viviana</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#6a5aaa"></div>Rota = el que pueda</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3a5a9a"></div>Ambos = juntos</div>
+  </div>
+
+  <div class="footer">
+    <div class="deco-line"><div class="line"></div><span style="font-size:13px">🌿</span><div class="line"></div></div>
+    Es una guía, no una camisa de fuerza · ajústenlo cuando lo necesiten
+  </div>
+
+</div>
+</body>
+</html>
+
