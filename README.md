@@ -28,7 +28,7 @@ hogar-rutinas/
 
 ## Cómo usarlo
 
-1. Abrir `menu-v3.html` en el navegador
+1. Abrir `rutinas_hogar_v3.html` en el navegador
 2. Imprimir con **Ctrl+P** → "Guardar como PDF" o impresora física
 3. Editar el HTML directamente para actualizar el menú de la semana
 
